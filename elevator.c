@@ -83,6 +83,7 @@ int main(int argc, char** argv) {
 				//Sleep command here or when the elevator sends the update?
 				//Exit the elevator
 				elevator[1]--;
+				//Change floors when people reach their destination
 				if (people[1] > 1) people[1]--;
 				else {
 					people[1]++;
