@@ -11,6 +11,7 @@ int main(int argc, char** argv) {
 	//For loop for elevator so it goes up and down
 	bool goUp = true;
 	int cnt = 0;
+	//MPI_Bcast setting
 	int root = 0;
 	int floorNr;
 	
@@ -33,7 +34,7 @@ int main(int argc, char** argv) {
 			else {
 				cnt--;
 			}
-			printf("The elevator is on this floor: %d\n")
+			printf("The elevator is on this floor: %d\n");
 			MPI_Bcast(cnt,1, MPI_INT, root, MPI_COMM_WORLD);
 			if(cnt == 3) {goUp = false;}
 			if(cnt == 0) {goUp = true;}
@@ -47,7 +48,7 @@ int main(int argc, char** argv) {
 		int data[2];
 		source = 0;
 		tag = rank;
-		//For loopt to mirrior the loop in the elevator
+		//For loop to mirror the loop in the elevator
 		for(int i = 0; i<12; i++) {
 			//Receive which floor the elevator is on (It works I tested it)
 			MPI_Bcast(&floorNr,1,MPI_INT,root,MPI_COMM_WORLD);
